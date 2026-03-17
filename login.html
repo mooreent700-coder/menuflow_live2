@@ -1,42 +1,94 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MenuFlow Login</title>
+  <title>MenuFlow Auth</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="/assets/js/supabaseClient.js"></script>
 </head>
+<body style="background:#0f172a;color:white;font-family:sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;margin:0;">
 
-<body style="background:#0f172a;color:white;font-family:sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;">
+<div style="width:320px;">
+  <h1>MenuFlow</h1>
+  <h2>Login</h2>
 
-<div style="width:300px;">
-  <h1>Login</h1>
+  <input id="email" placeholder="Email" style="width:100%;padding:12px;margin-bottom:10px;border-radius:8px;border:none;" />
+  <input id="password" type="password" placeholder="Password" style="width:100%;padding:12px;margin-bottom:10px;border-radius:8px;border:none;" />
 
-  <input id="email" placeholder="Email" style="width:100%;padding:10px;margin-bottom:10px;" />
-  <input id="password" type="password" placeholder="Password" style="width:100%;padding:10px;margin-bottom:10px;" />
+  <button onclick="login()" style="width:100%;padding:12px;background:#7c3aed;color:white;border:none;border-radius:8px;margin-bottom:10px;">
+    Login
+  </button>
 
-  <button onclick="login()" style="width:100%;padding:10px;background:#7c3aed;color:white;">Login</button>
+  <button onclick="signup()" style="width:100%;padding:12px;background:#2563eb;color:white;border:none;border-radius:8px;margin-bottom:10px;">
+    Sign Up
+  </button>
 
-  <p id="status"></p>
+  <button onclick="resetPassword()" style="width:100%;padding:12px;background:#334155;color:white;border:none;border-radius:8px;">
+    Forgot Password
+  </button>
+
+  <p id="status" style="margin-top:12px;"></p>
 </div>
 
 <script>
-async function login() {
-  const { client } = window.MFClient;
+  const supabase = window.supabase.createClient(
+    'https://pgzpchlsogtarplgqapr.supabase.co',
+    'PASTE_YOUR_FULL_ANON_KEY_HERE'
+  );
 
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
+  async function login() {
+    const status = document.getElementById('status');
+    status.innerText = 'Logging in...';
 
-  const { error } = await client.auth.signInWithPassword({
-    email,
-    password
-  });
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
 
-  if (error) {
-    document.getElementById('status').innerText = error.message;
-  } else {
-    window.location.href = '/dashboard/';
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+    if (error) {
+      status.innerText = error.message;
+      return;
+    }
+
+    window.location.href = '/dashboard/index.html';
   }
-}
+
+  async function signup() {
+    const status = document.getElementById('status');
+    status.innerText = 'Creating account...';
+
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+
+    const { error } = await supabase.auth.signUp({ email, password });
+
+    if (error) {
+      status.innerText = error.message;
+      return;
+    }
+
+    status.innerText = 'Sign up successful. Check your email if confirmation is enabled.';
+  }
+
+  async function resetPassword() {
+    const status = document.getElementById('status');
+    const email = document.getElementById('email').value.trim();
+
+    if (!email) {
+      status.innerText = 'Enter your email first.';
+      return;
+    }
+
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: window.location.origin + '/login.html'
+    });
+
+    if (error) {
+      status.innerText = error.message;
+      return;
+    }
+
+    status.innerText = 'Password reset email sent.';
+  }
 </script>
 
 </body>
