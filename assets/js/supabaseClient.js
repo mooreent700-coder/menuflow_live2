@@ -1,5 +1,5 @@
-window.MF_SUPABASE_URL = 'PASTE_YOUR_SUPABASE_URL_HERE';
-window.MF_SUPABASE_ANON_KEY = 'PASTE_YOUR_SUPABASE_ANON_KEY_HERE';
+window.MF_SUPABASE_URL = 'https://pgzpchlsogtarplgqapr.supabase.co';
+window.MF_SUPABASE_ANON_KEY = 'sb_publishable_3uICp0nV_ub5R1L7vu_eBg_9oTnrFtf...';
 
 window.MFClient = (() => {
   function ready() {
