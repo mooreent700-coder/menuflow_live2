@@ -1,0 +1,50 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Website Editor</title><link rel="stylesheet" href="../assets/css/styles.css"><script defer src="../assets/js/core.js"></script><script defer src="../assets/js/dashboard.js"></script><script defer src="../assets/js/website.js"></script><script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script defer src="../assets/js/supabaseClient.js"></script></head><body><div class="layout"><aside class="side"><div class="brand"><div class="logo">M</div><div>MenuFlow</div></div><div style="margin-top:10px" class="muted" id="bizName">Your business</div><nav class="nav"><a href="index.html" >Overview</a><a href="website.html" class="active">Website</a><a href="menu.html" >Menu</a></nav><div class="stack" style="margin-top:18px"><a class="btn btn-primary" data-site-link href="../site/index.html?slug=demo-kitchen">Website</a><button id="logout" class="btn btn-secondary">Logout</button></div></aside><main class="main">
+<div class="row"><div><span class="kicker">Website</span><h1>Hero picture and storefront editor</h1></div><div class="toolbar"><a class="btn btn-primary" data-site-link href="../site/index.html?slug=demo-kitchen" target="_blank">Website</a><button class="btn btn-secondary" data-copy-site>Copy Website Link</button></div></div>
+<div class="g2 grid">
+  <form id="websiteForm" class="card stack">
+    <input name="name" placeholder="Business name">
+    <input name="slug" placeholder="Slug">
+    <input name="heroTitle" placeholder="Hero title">
+    <textarea name="heroSubtitle" placeholder="Hero subtitle"></textarea>
+    <input name="pickupMessage" placeholder="Pickup message">
+    <label>Hero picture upload</label>
+    <input name="hero" type="file" accept="image/*">
+    <div id="heroPrev" class="inline-preview"></div>
+    <label>Logo upload</label>
+    <input name="logo" type="file" accept="image/*">
+    <div id="logoPrev" class="inline-preview"></div>
+    <label>Personal website link</label>
+    <input id="siteUrl" readonly>
+    <div class="toolbar"><button class="btn btn-primary" type="submit">Save Website</button><button class="btn btn-secondary" id="publishBtn" type="button">Publish Website</button></div>
+    <div id="publishMsg" class="muted"></div>
+  </form>
+  <div class="card">
+    <h2>Live preview</h2>
+    <div class="preview">
+      <div class="shot">
+        <img id="liveHero" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop">
+        <div class="ov"></div>
+        <div class="text">
+          <div class="site-logo" id="liveLogo"></div>
+          <h2 id="liveTitle">Your hero title</h2>
+          <div class="muted" id="liveSub"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</main></div><script>
+document.addEventListener('DOMContentLoaded',()=>{
+ const btn=document.getElementById('publishBtn'); const msg=document.getElementById('publishMsg');
+ if(btn) btn.addEventListener('click', async ()=>{
+   msg.textContent='Publishing website...';
+   try{
+     const b = await MF.publishSite();
+     msg.textContent='Website live: ' + MF.siteLink({slug:b.slug});
+     if(window.MF_DASH_REFRESH) window.MF_DASH_REFRESH();
+   }catch(err){
+     msg.textContent = err.message || 'Publish failed';
+   }
+ });
+});
+</script></body></html>

@@ -1,0 +1,9 @@
+1. In Supabase, run supabase_schema.sql in SQL Editor.
+2. Create public storage buckets:
+   - heroes
+   - logos
+   - menu-images
+3. Open assets/js/supabaseClient.js
+4. Paste your Supabase URL and anon key there.
+5. Deploy to Netlify.
+6. Create the owner account in Supabase Auth, then log in here.

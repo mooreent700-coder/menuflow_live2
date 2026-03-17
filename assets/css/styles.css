@@ -1,0 +1,25 @@
+:root{--bg:#0b1020;--panel:#121a2f;--panel2:#18223d;--line:#293657;--text:#edf2ff;--muted:#a9b6d6;--brand:#7c5cff}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#0b1020,#0f1730);color:var(--text);font-family:Inter,system-ui,sans-serif}
+a{text-decoration:none;color:inherit}img{display:block;max-width:100%}input,textarea,select,button{font:inherit}
+input,textarea,select{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:#0f1730;color:var(--text)}textarea{min-height:90px}
+button,.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 16px;border-radius:14px;border:none;cursor:pointer;font-weight:700}
+.btn-primary{background:linear-gradient(135deg,var(--brand),#9d82ff);color:#fff}.btn-secondary{background:var(--panel2);color:#fff;border:1px solid var(--line)}
+.container{max-width:1180px;margin:0 auto;padding:22px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900}.logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--brand),#00d2ff);display:grid;place-items:center}
+.card{background:rgba(18,26,47,.92);border:1px solid var(--line);border-radius:20px;padding:20px}
+.grid{display:grid;gap:18px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:20px 0 10px}
+.kicker{display:inline-block;padding:8px 12px;border-radius:999px;background:rgba(124,92,255,.16);border:1px solid rgba(124,92,255,.35);color:#ddd6fe;font-weight:700}
+h1{font-size:clamp(34px,6vw,60px);line-height:1.03;margin:12px 0}h2{margin:0 0 10px}.muted{color:var(--muted)}.stack{display:grid;gap:14px}.preview{border-radius:22px;overflow:hidden;border:1px solid var(--line);background:#111827}
+.preview .shot{height:380px;position:relative}.preview .shot img{width:100%;height:100%;object-fit:cover}.preview .shot .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.75))}.preview .shot .text{position:absolute;left:22px;right:22px;bottom:22px}
+.layout{display:grid;grid-template-columns:250px 1fr;min-height:100vh}.side{background:rgba(11,16,32,.95);border-right:1px solid var(--line);padding:20px}.nav{display:grid;gap:8px;margin-top:18px}.nav a{padding:12px 14px;border-radius:14px}.nav a.active,.nav a:hover{background:var(--panel2)}
+.main{padding:20px}.row{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.toolbar{display:flex;gap:10px;flex-wrap:wrap}
+.inline-preview{min-height:70px;border-radius:16px;border:1px solid var(--line);overflow:hidden;background:#0f1730}.inline-preview img{width:100%;max-height:220px;object-fit:cover}
+.item{display:grid;grid-template-columns:90px 1fr auto;gap:14px;align-items:center;padding:14px;border-radius:18px;border:1px solid var(--line);background:#10172b}
+.thumb{width:90px;height:90px;border-radius:16px;overflow:hidden;background:#0b1020;border:1px solid var(--line)}.thumb img{width:100%;height:100%;object-fit:cover}
+.badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#17213a;border:1px solid var(--line);font-size:12px;font-weight:700}
+.store-hero{height:360px;position:relative;overflow:hidden;border-radius:0 0 28px 28px}.store-hero img{width:100%;height:100%;object-fit:cover}.store-hero .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.76))}.store-hero .txt{position:absolute;left:22px;right:22px;bottom:22px;max-width:760px}
+.site-logo{width:82px;height:82px;border-radius:18px;overflow:hidden;background:#fff;border:2px solid rgba(255,255,255,.28);margin-bottom:12px}.site-logo img{width:100%;height:100%;object-fit:cover}
+.menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.menu-card{overflow:hidden;border:1px solid var(--line);border-radius:18px;background:#10172b}.menu-card .ph{height:220px;background:#0b1020}.menu-card .ph img{width:100%;height:100%;object-fit:cover}.menu-card .body{padding:14px}
+.sticky{position:fixed;right:18px;bottom:18px;z-index:30}
+.empty{padding:24px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:18px}
+@media(max-width:900px){.hero,.g2,.g3,.layout,.menu-grid,.item{grid-template-columns:1fr}.side{border-right:none;border-bottom:1px solid var(--line)}.store-hero{height:300px}}

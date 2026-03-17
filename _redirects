@@ -1,0 +1,6 @@
+/assets/*   /assets/:splat   200
+/dashboard/*  /dashboard/:splat  200
+/site/*  /site/:splat  200
+/login.html  /login.html  200
+/index.html  /index.html  200
+/:slug  /site/index.html?slug=:slug  200
